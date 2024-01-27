@@ -1,10 +1,12 @@
-import './App.css';
-import TodoList from './features/todos/TodoList';
+import './App.css'
+import { useTodosQuery } from './store/productApi';
 
 function App() {
+
+  const { data } = useTodosQuery()
+  console.log(data);
   return (
     <div className="App">
-      <TodoList/>
     </div>
   );
 }
