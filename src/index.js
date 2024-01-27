@@ -2,15 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { ApiProvider } from '@reduxjs/toolkit/query/react';
-import { productApi } from './store/productApi';
-
+import { Provider } from 'react-redux';
+import { store } from './store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ApiProvider api={productApi}>
+    <Provider store={store}>
     <App />
-    </ApiProvider>
+    </Provider>
   </React.StrictMode>
 );
 
