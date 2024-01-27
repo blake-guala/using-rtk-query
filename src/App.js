@@ -17,7 +17,7 @@ function App() {
         <div>
           {data.map(todo => (
             [<span key={todo.id}>{todo.title}</span>,
-            <span><TodoDetails id={todo.id}/></span>]
+            <span key={todo.userId}><TodoDetails id={todo.id}/></span>]
           ))}
         </div>
       )}

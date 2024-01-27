@@ -10,6 +10,28 @@ export const todoApi = createApi({
         }),
         todo: builder.query({
             query: (id) => `/todos/${id}`
+        }),
+
+        addTodos: builder.mutation({
+            query: todo => ({
+                url: '/todos',
+                method: 'POST',
+                body: todo
+            })
+        }),
+        updateTodos: builder.mutation({
+            query: ({ id, todo }) => ({
+                url: `/todos/${id}`,
+                method: 'PUT',
+                body: todo
+            })
+        }),
+        deleteTodo: builder.mutation({
+            query: ({id, todo}) => ({
+                url: `/todos/${id}`,
+                method: 'DELETE',
+                body: todo
+            })
         })
     })
 })
