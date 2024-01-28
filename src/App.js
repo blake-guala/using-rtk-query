@@ -40,7 +40,7 @@ export const TodoDetails = ({id}) => {
 }
 
 export const AddTodos = () => {
-  const { refetch } = useTodosQuery()
+  // const { refetch } = useTodosQuery()
   const [addTodos] = useAddTodosMutation()
   const todo = {
     "userId": 1,
@@ -51,7 +51,7 @@ export const AddTodos = () => {
 
   const onAdd = async() => {
     await addTodos(todo)
-    refetch()
+    // refetch()
   }
 
   return (
