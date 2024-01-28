@@ -9,8 +9,10 @@ import { useAddTodosMutation,
 function App() {
 
   // eslint-disable-next-line
-  const { data, isLoading, isFetching, isSuccess, isError } = useTodosQuery()
-  console.log(data);
+  const { data: allTodo, isLoading, isFetching, isSuccess, isError } = useTodosQuery()
+  const { data: singleTodo } = useTodoQuery('2')
+
+  console.log(singleTodo);
 
   return (
     <div className="App">
@@ -20,7 +22,7 @@ function App() {
       {isError && <h5>...error ocurred</h5>}
       {isSuccess && (
         <div>
-          {data.map(todo => (
+          {allTodo.map(todo => (
             // [<span key={todo.id}>{todo.title}</span>,
             <span><TodoDetails key={todo.userId} id={todo.id}/></span>
           ))}
