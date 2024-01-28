@@ -1,6 +1,10 @@
 import { Fragment } from 'react';
 import './App.css'
-import { useAddTodosMutation, useTodoQuery, useTodosQuery } from './store/todoApi';
+import { useAddTodosMutation, 
+  useDeleteTodoMutation, 
+  useTodoQuery, 
+  useTodosQuery, 
+  useUpdateTodosMutation } from './store/todoApi';
 
 function App() {
 
@@ -17,8 +21,8 @@ function App() {
       {isSuccess && (
         <div>
           {data.map(todo => (
-            [<span key={todo.id}>{todo.title}</span>,
-            <span key={todo.userId}><TodoDetails id={todo.id}/></span>]
+            // [<span key={todo.id}>{todo.title}</span>,
+            <span><TodoDetails key={todo.userId} id={todo.id}/></span>
           ))}
         </div>
       )}
@@ -42,10 +46,18 @@ export const TodoDetails = ({id}) => {
 export const AddTodos = () => {
   // const { refetch } = useTodosQuery()
   const [addTodos] = useAddTodosMutation()
+  const [ upDateTodos ] = useUpdateTodosMutation()
+  const [deleteTodo ] = useDeleteTodoMutation()
   const todo = {
-    "userId": 1,
+    "userId": 5665,
     "title": "Fuck nigga !",
     "completed": true,
+    "id": "202"
+  }
+  const todoUpdate = {
+    "userId": 5665,
+    "title": "hell yeah !",
+    "completed": false,
     "id": "202"
   }
 
@@ -53,10 +65,20 @@ export const AddTodos = () => {
     await addTodos(todo)
     // refetch()
   }
+  const onPut = async() => {
+    // refetch()
+    await upDateTodos(todoUpdate)
+  }
+  const onDelete = async() => {
+    // refetch()
+    await deleteTodo(todo.id)
+  }
 
   return (
     <Fragment>
       <button onClick={onAdd}> add todo </button>
+      <button onClick={onPut}> update todo </button>
+      <button onClick={onDelete}> delete todo </button>
     </Fragment>
   )
 }
