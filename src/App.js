@@ -1,5 +1,6 @@
+import { Fragment } from 'react';
 import './App.css'
-import { useTodoQuery, useTodosQuery } from './store/todoApi';
+import { useAddTodosMutation, useTodoQuery, useTodosQuery } from './store/todoApi';
 
 function App() {
 
@@ -21,6 +22,9 @@ function App() {
           ))}
         </div>
       )}
+      <div>
+        <AddTodos/>
+      </div>
     </div>
   );
 }
@@ -35,6 +39,27 @@ export const TodoDetails = ({id}) => {
   )
 }
 
+export const AddTodos = () => {
+  const { refetch } = useTodosQuery()
+  const [addTodos] = useAddTodosMutation()
+  const todo = {
+    "userId": 1,
+    "title": "Fuck nigga !",
+    "completed": true,
+    "id": "202"
+  }
+
+  const onAdd = async() => {
+    await addTodos(todo)
+    refetch()
+  }
+
+  return (
+    <Fragment>
+      <button onClick={onAdd}> add todo </button>
+    </Fragment>
+  )
+}
 
 
 export default App;
