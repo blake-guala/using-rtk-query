@@ -12,7 +12,7 @@ function App() {
   const { data: allTodo, isLoading, isFetching, isSuccess, isError } = useTodosQuery()
   const { data: singleTodo } = useTodoQuery('2')
 
-  console.log(singleTodo);
+  // console.log(singleTodo);
 
   return (
     <div className="App">
